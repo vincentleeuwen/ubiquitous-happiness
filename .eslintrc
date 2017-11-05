@@ -1,0 +1,36 @@
+{
+  "extends": "eslint-config-airbnb",
+  "plugins": [
+    "react"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "classes": true
+    }
+  },
+  "rules": {
+    "semi": [2, "always"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    no-use-before-define: [0, 'nofunc'],
+    generator-star-spacing: 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    jsx-quotes: ["error", "prefer-single"],
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
+    func-names: ["error", "as-needed"],
+    padded-blocks: ["error", "never"],
+    "react/no-multi-comp": [0, { "ignoreStateless": true }],
+    "class-methods-use-this": [0, {}]
+  },
+  "globals": {
+    "fetch": false,
+    "localStorage": true,
+    "window": true,
+    "history": true,
+  },
+  "env": {
+    "jest": true
+  }
+}

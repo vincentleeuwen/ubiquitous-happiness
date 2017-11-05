@@ -33,6 +33,10 @@ export default class FormContainer extends React.Component {
   }
   submitForm = (e) => {
     e.preventDefault();
+    this.setState({
+      invalidEmail: false,
+      emailInDatabase: false,
+    });
     if (this.checkEmail(this.state.email) === false) {
       this.setState({
         invalidEmail: true,
@@ -40,13 +44,23 @@ export default class FormContainer extends React.Component {
       return;
     }
     const dbCon = this.props.db.database().ref('/signups');
-    dbCon.push({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password,
-    });
-    this.props.signupDone();
+    dbCon.orderByChild('email')
+      .equalTo(this.state.email)
+      .on('value', (snapshot) => {
+        if (snapshot.numChildren() > 0) {
+          this.setState({
+            emailInDatabase: true,
+          });
+          return;
+        }
+        dbCon.push({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+        });
+        this.props.signupDone();
+      });
   }
   render() {
     return (

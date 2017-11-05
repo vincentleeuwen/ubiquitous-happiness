@@ -1,3 +1,26 @@
 body {
   background: #F5515f;
 }
+
+.App {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 650px;
+}
+
+.App .Book-form, .App .Book-cover {
+  width: 375px;
+  background: #fff;
+}
+
+.App .Book-form {
+  height: 530px;
+}
+
+.App .Book-cover {
+  background: url('./img/city-of-thieves.png') no-repeat center center;
+  background-size: cover;
+  height: 570px;
+}

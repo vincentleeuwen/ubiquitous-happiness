@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 body {
-  background: #F5515f;
   font-family: 'PT Sans', sans-serif;
   color: #4A4B4B;
 }
@@ -11,7 +10,8 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 680px;
+  height: 700px;
+  background: #F5515f;
 }
 
 .App .Book-form, .App .Book-cover {

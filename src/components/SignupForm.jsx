@@ -30,9 +30,18 @@ const SignupForm = props => (
       value={props.email}
       onChange={props.handleChange('email')}
       margin='normal'
+      error={props.invalidEmail === true || props.emailInDatabase === true}
       fullWidth
       required
     />
+    {
+      props.invalidEmail === true &&
+        <p className='error'>The email entered is not a valid email address.</p>
+    }
+    {
+      props.emailInDatabase === true &&
+        <p className='error'>This email is already registered.</p>
+    }
     <TextField
       id='password'
       label='Password'
@@ -76,6 +85,8 @@ SignupForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   checkFields: PropTypes.func.isRequired,
   submitForm: PropTypes.func.isRequired,
+  invalidEmail: PropTypes.bool.isRequired,
+  emailInDatabase: PropTypes.bool.isRequired,
 };
 
 export default SignupForm;

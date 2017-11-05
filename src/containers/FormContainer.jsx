@@ -12,11 +12,20 @@ export default class FormContainer extends React.Component {
     lastName: '',
     email: '',
     password: '',
+    invalidEmail: false,
+    emailInDatabase: false,
   }
   handleChange = field => (event) => {
     this.setState({
       [field]: event.target.value,
     });
+  }
+  checkEmail(email) {
+    const filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!filter.test(email)) {
+      return false;
+    }
+    return true;
   }
   checkFields = () => {
     return this.state.email.length > 0 && this.state.firstName.length > 0 &&
@@ -24,6 +33,12 @@ export default class FormContainer extends React.Component {
   }
   submitForm = (e) => {
     e.preventDefault();
+    if (this.checkEmail(this.state.email) === false) {
+      this.setState({
+        invalidEmail: true,
+      });
+      return;
+    }
     const dbCon = this.props.db.database().ref('/signups');
     dbCon.push({
       firstName: this.state.firstName,
@@ -53,6 +68,8 @@ export default class FormContainer extends React.Component {
                   handleChange={this.handleChange}
                   submitForm={this.submitForm}
                   checkFields={this.checkFields}
+                  invalidEmail={this.state.invalidEmail}
+                  emailInDatabase={this.state.emailInDatabase}
                 />
             }
           </Grid>

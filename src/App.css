@@ -17,6 +17,7 @@ body {
 .App .Book-form, .App .Book-cover {
   width: 375px;
   background: #fff;
+  box-shadow: 0 8px 37px rgba(0,0,0,.50);
 }
 
 .App .Book-form {
@@ -49,6 +50,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 .App .Book-cover img {
   position: absolute;

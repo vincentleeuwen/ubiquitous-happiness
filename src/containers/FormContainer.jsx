@@ -22,7 +22,11 @@ export default class FormContainer extends React.Component {
   }
   submitForm = (e) => {
     e.preventDefault();
-    console.log('Form submitted!');
+    const data = this.state;
+    const dbCon = this.props.db.database().ref('/signups');
+    dbCon.push({
+      data,
+    });
   }
   render() {
     return (

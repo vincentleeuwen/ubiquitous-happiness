@@ -96,7 +96,7 @@ export default class FormContainer extends React.Component {
 FormContainer.propTypes = {
   signupDone: PropTypes.func.isRequired,
   signupSuccess: PropTypes.bool.isRequired,
-  db: PropTypes.objectOf({
+  db: PropTypes.shape({
     database: PropTypes.func.isRequired,
   }).isRequired,
 };

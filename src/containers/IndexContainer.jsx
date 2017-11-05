@@ -33,7 +33,7 @@ export default class IndexContainer extends React.Component {
 }
 
 IndexContainer.propTypes = {
-  db: PropTypes.objectOf({
+  db: PropTypes.shape({
     database: PropTypes.func.isRequired,
   }).isRequired,
 };

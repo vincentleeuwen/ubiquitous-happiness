@@ -37,7 +37,7 @@ export default class SignupsContainer extends React.Component {
 }
 
 SignupsContainer.propTypes = {
-  db: PropTypes.objectOf({
+  db: PropTypes.shape({
     database: PropTypes.func.isRequired,
   }).isRequired,
 };

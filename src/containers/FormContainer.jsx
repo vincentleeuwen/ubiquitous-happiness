@@ -1,8 +1,10 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
+import PropTypes from 'prop-types';
 
 import ottoRadio from '../img/ottoradio.png';
 import SignupForm from '../components/SignupForm';
+import SignupSuccess from '../components/SignupSuccess';
 
 export default class FormContainer extends React.Component {
   state = {
@@ -22,11 +24,14 @@ export default class FormContainer extends React.Component {
   }
   submitForm = (e) => {
     e.preventDefault();
-    const data = this.state;
     const dbCon = this.props.db.database().ref('/signups');
     dbCon.push({
-      data,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
     });
+    this.props.signupDone();
   }
   render() {
     return (
@@ -34,20 +39,33 @@ export default class FormContainer extends React.Component {
         <img src={ottoRadio} alt='Otto Radio' />
         <Grid container spacing={8} className='Form-container'>
           <Grid item xs={12}>
-            <h1>Listen to City of Thieves free now.</h1>
-            <p>Try Otto Radio Unlimited free for 7 days.<br />Cancel any time.</p>
-            <SignupForm
-              firstName={this.state.firstName}
-              lastName={this.state.lastName}
-              email={this.state.email}
-              password={this.state.password}
-              handleChange={this.handleChange}
-              submitForm={this.submitForm}
-              checkFields={this.checkFields}
-            />
+            {
+              this.props.signupSuccess &&
+                <SignupSuccess />
+            }
+            {
+              !this.props.signupSuccess &&
+                <SignupForm
+                  firstName={this.state.firstName}
+                  lastName={this.state.lastName}
+                  email={this.state.email}
+                  password={this.state.password}
+                  handleChange={this.handleChange}
+                  submitForm={this.submitForm}
+                  checkFields={this.checkFields}
+                />
+            }
           </Grid>
         </Grid>
       </div>
     );
   }
 }
+
+FormContainer.propTypes = {
+  signupDone: PropTypes.func.isRequired,
+  signupSuccess: PropTypes.bool.isRequired,
+  db: PropTypes.objectOf({
+    database: PropTypes.func.isRequired,
+  }).isRequired,
+};

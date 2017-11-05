@@ -3,10 +3,14 @@ import firebase from 'firebase';
 
 import './App.css';
 import FormContainer from './containers/FormContainer';
+import player from './img/player.png';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      signupSuccess: false,
+    };
     const config = {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
       authDomain: 'ottoradiotest-69a70.firebaseapp.com',
@@ -17,11 +21,25 @@ class App extends Component {
     };
     firebase.initializeApp(config);
   }
+  signupDone = () => {
+    this.setState({
+      signupSuccess: true,
+    });
+  }
   render() {
     return (
       <div className='App'>
-        <FormContainer db={firebase} />
-        <div className='Book-cover' />
+        <FormContainer
+          db={firebase}
+          signupSuccess={this.state.signupSuccess}
+          signupDone={this.signupDone}
+        />
+        <div className='Book-cover'>
+          {
+            this.state.signupSuccess &&
+              <img src={player} alt='Listen to this book' />
+          }
+        </div>
       </div>
     );
   }

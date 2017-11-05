@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 const SignupForm = props => (
   <form noValidate autoComplete='off' onSubmit={props.submitForm}>
+    <h1>Listen to City of Thieves free now.</h1>
+    <p>Try Otto Radio Unlimited free for 7 days.<br />Cancel any time.</p>
     <TextField
       id='firstName'
       label='First name'
@@ -24,6 +26,7 @@ const SignupForm = props => (
     <TextField
       id='email'
       label='Email'
+      type='email'
       value={props.email}
       onChange={props.handleChange('email')}
       margin='normal'

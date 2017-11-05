@@ -27,10 +27,10 @@ export default class FormContainer extends React.Component {
     }
     return true;
   }
-  checkFields = () => {
-    return this.state.email.length > 0 && this.state.firstName.length > 0 &&
+
+  checkFields = () => this.state.email.length > 0 && this.state.firstName.length > 0 &&
       this.state.lastName.length > 0 && this.state.password.length > 0;
-  }
+
   submitForm = (e) => {
     e.preventDefault();
     this.setState({

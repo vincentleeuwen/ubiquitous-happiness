@@ -1,3 +1,14 @@
+## Get started
+
+- Clone this repository.
+- Create a `.env.local` file with `REACT_APP_FIREBASE_API_KEY = API_KEY_HERE`.
+- Run `npm install && npm start`.
+
+Good to go!
+
+---
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
